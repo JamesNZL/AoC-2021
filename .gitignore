@@ -128,3 +128,6 @@ dist
 
 # vscode directory
 .vscode/
+
+# Compiled Typescript
+compiled/
