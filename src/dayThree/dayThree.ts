@@ -22,7 +22,7 @@ const report = readInput.string(__dirname);
  */
 const countOccurences = (array: any[], element: any): number => {
 	return array.reduce((count, _element) => count + ((_element === element) ? 1 : 0), 0);
-}
+};
 
 /**
  * Apply a specified \<BitCriteria> to a specified \<string[]> of position bits and return the bit to keep
@@ -32,7 +32,7 @@ const countOccurences = (array: any[], element: any): number => {
  */
 const applyBitCriteria = (positionBits: string[], bitCriteria: BitCritiera): string => {
 	return bitCriteria(countOccurences(positionBits, '1'), countOccurences(positionBits, '0'));
-}
+};
 
 const bitLength = report[0].length;
 
@@ -53,7 +53,7 @@ for (let index = 0; index < bitLength; index++) {
 		ratings[<Rating>rating] = binaries.filter(binary => {
 			return binary[index] === applyBitCriteria(positionBits, BIT_CRITERIA[<Rating>rating]);
 		});
-	})
+	});
 
 	// Break if all the ratings have been found
 	if (Object.values(ratings).every(binaries => binaries.length === 1)) break;
