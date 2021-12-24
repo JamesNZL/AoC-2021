@@ -130,4 +130,4 @@ dist
 .vscode/
 
 # Compiled Typescript
-compiled/
+dist/
