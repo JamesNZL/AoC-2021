@@ -6,7 +6,7 @@ import fs = require('fs');
  * @param {boolean} [isGrouped=false] Whether the input file is grouped by newlines
  * @returns {string[]} The read file as a \<string[]>
  */
-export const string = (dirname: string, isGrouped: boolean = false): string[] => {
+export const string = (dirname: string, isGrouped = false): string[] => {
 	const input = fs.readFileSync(`${dirname}\\input.txt`, { encoding: 'utf-8', flag: 'r' })
 		.trim();
 
@@ -21,4 +21,4 @@ export const string = (dirname: string, isGrouped: boolean = false): string[] =>
  * @param {boolean} [isGrouped=false] Whether the input file is grouped by newlines
  * @returns {number[]} The read file as a \<number[]>
  */
-export const number = (dirname: string, isGrouped: boolean = false): number[] => string(dirname, isGrouped).map(Number)
+export const number = (dirname: string, isGrouped = false): number[] => string(dirname, isGrouped).map(Number);
