@@ -8,8 +8,8 @@ type RatingMap<T> = {
 };
 
 const BIT_CRITERIA: RatingMap<BitCritiera> = {
-	oxygenGenerator: <BitCriteria>(countOfOnes: number, countOfZeroes: number): string => ((countOfOnes >= countOfZeroes) ? '1' : '0'),
-	carbonDioxideScrubber: <BitCriteria>(countOfOnes: number, countOfZeroes: number): string => ((countOfOnes >= countOfZeroes) ? '0' : '1'),
+	oxygenGenerator: (countOfOnes: number, countOfZeroes: number): string => ((countOfOnes >= countOfZeroes) ? '1' : '0'),
+	carbonDioxideScrubber: (countOfOnes: number, countOfZeroes: number): string => ((countOfOnes >= countOfZeroes) ? '0' : '1'),
 };
 
 const report = readInput.string(__dirname);
