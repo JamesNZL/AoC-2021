@@ -44,14 +44,14 @@ const calculateScore = (board: number[][], drawnNumbers: number[]): number => {
 	return lastNumber * sumOfUnmarked;
 };
 
-numberLoop:
 for (let index = 0; index < numbers.length; index++) {
 	for (const board of boards) {
 		const drawnNumbers = numbers.slice(0, index + 1);
 
 		if (checkIfBingo(board, drawnNumbers)) {
-			console.log(calculateScore(board, drawnNumbers));
-			break numberLoop;
+			if (boards.length === 1) console.log(calculateScore(board, drawnNumbers));
+
+			boards.splice(boards.indexOf(board), 1);
 		}
 	}
 }
