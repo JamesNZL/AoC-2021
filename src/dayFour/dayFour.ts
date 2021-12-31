@@ -35,6 +35,12 @@ const transposeBoard = (board: number[][]): number[][] => board[0].map((_, colum
  */
 const checkIfBingo = (board: number[][], drawnNumbers: number[]): boolean => rowsMatch(board, drawnNumbers) || rowsMatch(transposeBoard(board), drawnNumbers);
 
+/**
+ * Calculate the score for a specified bingo \<number[][]> board
+ * @param {number[][]} board The board whose score to calculate
+ * @param {number[]} drawnNumbers The \<number[]> of drawn numbers
+ * @returns {number} The score of the board
+ */
 const calculateScore = (board: number[][], drawnNumbers: number[]): number => {
 	const lastNumber = <number>drawnNumbers.at(-1);
 	const sumOfUnmarked = board.flat()
