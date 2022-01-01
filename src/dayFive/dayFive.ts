@@ -23,8 +23,8 @@ const lines = <LineCoordinates[]>lineSegments.map(lineSegment => {
 		x2: Number(x2),
 		y2: Number(y2),
 	};
-})
-	.filter(({ x1, y1, x2, y2 }) => x1 === x2 || y1 === y2);
+});
+//	.filter(({ x1, y1, x2, y2 }) => x1 === x2 || y1 === y2);
 
 /**
  * Construct a \<number[][]> of the specified (rows, columns) size, initialised with values of `0`
@@ -49,10 +49,17 @@ const resolvePoints = ({ x1, y1, x2, y2 }: LineCoordinates): Point[] => {
 	const points: Point[] = [[x1, y1]];
 
 	while (x1 !== x2 || y1 !== y2) {
-		if (x1 > x2) points.push([--x1, y1]);
-		if (x1 < x2) points.push([++x1, y1]);
-		if (y1 > y2) points.push([x1, --y1]);
-		if (y1 < y2) points.push([x1, ++y1]);
+		const point = [];
+
+		if (x1 === x2) point.push(x1);
+		else if (x1 > x2) point.push(--x1);
+		else if (x1 < x2) point.push(++x1);
+
+		if (y1 === y2) point.push(y1);
+		else if (y1 > y2) point.push(--y1);
+		else if (y1 < y2) point.push(++y1);
+
+		points.push(<Point>point);
 	}
 
 	return points;
