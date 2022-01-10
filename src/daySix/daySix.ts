@@ -5,18 +5,34 @@ const CONSTANTS = {
 	INITIAL_DELAY: 2,
 };
 
-const ITERATIONS = 80;
+const ITERATIONS = 256;
 
-let fishTimers = readInput.string(__dirname)
+const fishMap: { [key: number]: number; } = Object.fromEntries(
+	[...Array(CONSTANTS.REPRODUCTION_DELAY + CONSTANTS.INITIAL_DELAY + 1).keys()]
+		.map(timer => [timer, 0]),
+);
+
+readInput.string(__dirname)
 	.join(',')
 	.split(',')
-	.map(Number);
+	.map(Number)
+	.forEach(timer => fishMap[timer] = fishMap?.[timer] + 1 || 1);
 
 for (let i = 0; i < ITERATIONS; i++) {
-	fishTimers = fishTimers.flatMap(timer => {
-		if (--timer === -1) return [CONSTANTS.REPRODUCTION_DELAY, CONSTANTS.REPRODUCTION_DELAY + CONSTANTS.INITIAL_DELAY];
-		else return [timer];
+	Object.entries(fishMap).forEach(([timer, count]) => {
+		if (Number(timer) === 0) {
+			fishMap[CONSTANTS.REPRODUCTION_DELAY] += count;
+			fishMap[CONSTANTS.REPRODUCTION_DELAY + CONSTANTS.INITIAL_DELAY] += count;
+		}
+
+		else {
+			fishMap[Number(timer) - 1] += count;
+		}
+
+		fishMap[Number(timer)] -= count;
 	});
 }
 
-console.log(fishTimers.length);
+const countOfLanternfish = Object.values(fishMap).reduce((sum, value) => sum + value);
+
+console.log(countOfLanternfish);
