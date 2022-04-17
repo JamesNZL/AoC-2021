@@ -5,8 +5,11 @@ const horizontalPositions = readInput.string(__dirname)
 	.split(',')
 	.map(Number);
 
-const median = horizontalPositions.sort((a, b) => a - b)[horizontalPositions.length >> 1];
+const mean = Math.floor(horizontalPositions.reduce((sum, position) => sum + position, 0) / horizontalPositions.length);
 
-const fuelUsed = horizontalPositions.reduce((sum, position) => sum + Math.abs(position - median), 0);
+const fuelUsed = horizontalPositions.reduce((sum, position) => {
+	const deltaPosition = Math.abs(mean - position);
+	return sum + ((0.5 * (deltaPosition ** 2)) + (0.5 * deltaPosition));
+}, 0);
 
-console.log(fuelUsed);
+console.log({ mean, fuelUsed });
